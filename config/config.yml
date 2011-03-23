@@ -1,95 +1,47 @@
-# config.yml.default
-# Default wiki configuration
-# Copy this file to config.yml if you want to tweak any settings.
-# Do not delete this file!
-
 ##################################################
 # Main configuration
 
-# Wiki title displayed at the top of the page
 title:           'Island Labs'
-
-# Default locale
-# Examples: en, en_US, de_DE
 locale:          'en_US'
-
-# Set this to false to put the wiki to debugging mode.
-# Debugging mode disables caching and enables exception backtraces.
 production:      true
-
-# Page used for the sidebar. This can be a path.
 sidebar_page:    'Sidebar'
+base_path:      './'
 
-# Use a different base directory as root to support installation in user homes
-base_path:      '/'
+cache_store:
+  type:   file
+  file:
+    root: './wiki/cache'
 
-# Main cache store. Uncomment this!
-# Available caches: memory, file, memcached, pstore
-#cache_store:
-#  type:   file
-#  file:
-#    root: '/home/user/wiki/cache'
-#  memcached:
-#    prefix: ''
-#    server: localhost:11211
-#  memory:
-#  pstore:
-#    file: '/home/user/wiki/cache.pstore'
-
-# Default math renderer
-# Available renderers:
-#   * mathjax      - MathML, recommended, just works, but requires javascript
-#   * itex         - MathML, needs itex2MML executable on path
-#   * ritex        - MathML, needs ruby ritex gem
-#   * blahteximage - Image, needs blahtex executable on path
-#   * blahtexml    - MathML, recommended, needs blahtex executable on path
-#   * google       - Image, only short formulas, uses google charts api
 math_renderer: mathjax
+blahtex_directory: './wiki/blahtex'
 
-# Directory where the blahtex math renderer stores the images.
-# Uncomment this!
-#blahtex_directory: '/home/user/wiki/blahtex'
-
-# Selected theme
 theme: atlantis
 
 ##################################################
 # Authentication backend configuration
 
 authentication:
-  # Enable signup
   enable_signup: true
-
-  # Select a authentication service which is configured below.
-  # Currently supported are: yamlfile, portal and stack.
   service:       yamlfile
 
-  # Configure the yamlfile backend.
-  # The yaml file backend stores the users in a simple yaml file.
-  # Uncomment this!
+  yamlfile:
+    store:       './wiki/users.yml'
 
-  #yamlfile:
-  #  store:       '/home/user/wiki/users.yml'
-
-  # Configure the portal backend.
-  # The portal backend uses a REST-API to access user data.
-  # Uncomment this!
-
-  #portal:
-  #  url:         'http://portal.test.com/'
+ # portal:
+ #   url:         'http://portal.heroku.com/'
 
   # Stack backend which accesses multiple backends in the following order.
   stack:
     - yamlfile
-    - portal
+#    - portal
 
 # Where to store authentication tokens for persistent login.
 # See the store types of cache_store.
 # Uncomment this!
-#tokens_store:
-#  type: pstore
-#  pstore:
-#    file: '/home/user/wiki/tokens.pstore'
+tokens_store:
+  type: pstore
+  pstore:
+    file: './wiki/tokens.pstore'
 
 ##################################################
 # Mime detection order
@@ -128,7 +80,7 @@ disabled_plugins:
 
 rack:
   # Secret key used to verify session integrity. Use a random string here!
-  #session_secret: 'Change the secret! Use random string!'
+  session_secret: '7d57af9e-0abe-4eb2-bee5-c2135fd26d83'
   # Use the deflater to compress data (Rack::Deflater)
   deflater:      true
   # Specify a list of blacklisted ips which cannot post data
@@ -139,7 +91,7 @@ rack:
 
 log:
   level: INFO
-  #file: '/home/user/wiki/log'
+  file: './wiki/log'
 
 ##################################################
 # Antispam configuration.
@@ -160,5 +112,5 @@ repository:
   # Configuration git repository type. Uncomment this!
   # Path is to a bare (!) git repository.
   git:
-    path:        '/home/jedahan/wiki/repository'
+    path:        './repository'
     bare:        true
