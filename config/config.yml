@@ -7,7 +7,7 @@
 # Main configuration
 
 # Wiki title displayed at the top of the page
-title:           'Ōlelo'
+title:           'Island Labs'
 
 # Default locale
 # Examples: en, en_US, de_DE
@@ -147,8 +147,8 @@ log:
 
 antispam:
   recaptcha:
-    #public:      public key
-    #private:     private key
+    public:      6LdIxsISAAAAAIrALbZPrZgsJ1NLcYz5UH1gZ4SM
+    private:     6LdIxsISAAAAAJk5ovBondFSNjcZ8N7DYbaujzhR
 
 ##################################################
 # Repository configuration
@@ -159,6 +159,6 @@ repository:
 
   # Configuration git repository type. Uncomment this!
   # Path is to a bare (!) git repository.
-  #git:
-  #  path:        '/home/user/wiki/repository'
-  #  bare:        true
+  git:
+    path:        '/home/jedahan/wiki/repository'
+    bare:        true
